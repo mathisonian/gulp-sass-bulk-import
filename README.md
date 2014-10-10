@@ -4,6 +4,13 @@ gulp-sass-bulk-import
 gulp task to allow importing directories in your SCSS
 
 
+## installation
+
+```
+npm install --save-dev gulp-sass-bulk-import
+```
+
+
 ## usage
 
 
@@ -15,6 +22,7 @@ gulp task to allow importing directories in your SCSS
 
 ```
 
+#### in your gulpfile
 
 ```js
 var bulkSass = require('gulp-sass-bulk-import');
