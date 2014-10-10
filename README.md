@@ -20,6 +20,11 @@ npm install --save-dev gulp-sass-bulk-import
 
 @import "some/path/*";
 
+// becomes
+// @import "some/path/file1.scss";
+// @import "some/path/file2.scss";
+// ...
+
 ```
 
 #### in your gulpfile
