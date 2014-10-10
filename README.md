@@ -7,8 +7,17 @@ gulp task to allow importing directories in your SCSS
 ## usage
 
 
+#### in your .scss file
+
+```scss
+
+@import "some/path/*";
+
+```
+
+
 ```js
- var bulkSass = require('gulp-sass-bulk-import');
+var bulkSass = require('gulp-sass-bulk-import');
 
 gulp.task('css', function() {
     return gulp
