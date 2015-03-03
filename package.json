@@ -29,7 +29,6 @@
   "homepage": "https://github.com/mathisonian/gulp-sass-bulk-import",
   "dependencies": {
     "glob": "^4.0.6",
-    "lodash": "^2.4.1",
     "through2": "^0.6.3",
     "vinyl-fs": "^0.3.9"
   },
