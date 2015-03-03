@@ -3,7 +3,6 @@
 
 var through = require('through2');
 var glob = require('glob');
-var _ = require('lodash');
 
 module.exports = function() {
 
@@ -24,7 +23,7 @@ module.exports = function() {
             var files = glob.sync(file.base + globName);
             var replaceString = '';
 
-            _.each(files, function(filename) {
+            files.forEach(function(filename){
                 replaceString += '@import "' + filename + '";\n';
             });
 
