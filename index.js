@@ -1,10 +1,25 @@
 
 'use strict';
 
+var path = require('path');
+var fs = require('fs');
 var through = require('through2');
 var glob = require('glob');
 
 module.exports = function() {
+
+    var process = function(filename) {
+        var replaceString = '';
+
+        if (fs.statSync(filename).isDirectory()) {
+            fs.readdirSync(filename).forEach(function (file) {
+                replaceString += process(filename + path.sep + file);
+            });
+            return replaceString;
+        } else {
+            return '@import "' + filename + '";\n'
+        }
+    }
 
     var transform = function(file, env, cb) {
 
@@ -24,7 +39,7 @@ module.exports = function() {
             var replaceString = '';
 
             files.forEach(function(filename){
-                replaceString += '@import "' + filename + '";\n';
+                replaceString += process(filename);
             });
 
             contents = contents.replace(sub, replaceString);
@@ -34,6 +49,5 @@ module.exports = function() {
         file.contents = new Buffer(contents);
         cb(null, file);
     };
-
     return through.obj(transform);
 };
