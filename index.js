@@ -12,6 +12,9 @@ module.exports = function() {
         var replaceString = '';
 
         if (fs.statSync(filename).isDirectory()) {
+            // Ignore directories start with _
+            if (path.basename(filename).substring(0, 1) == '_') return '';
+            
             fs.readdirSync(filename).forEach(function (file) {
                 replaceString += process(filename + path.sep + file);
             });
