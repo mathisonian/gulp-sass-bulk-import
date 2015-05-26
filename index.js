@@ -20,7 +20,11 @@ module.exports = function() {
             });
             return replaceString;
         } else {
-            return '@import "' + filename + '";\n'
+            if (filename.substr(-4).match(/sass|scss/i)) {
+                return '@import "' + filename + '";\n'
+            } else {
+                return '';
+            }
         }
     }
 
