@@ -40,7 +40,7 @@ describe('gulp-sass-glob-import', function() {
 
     it('should handle single and double quotes', function(done) {
         var equalString = '@import "' + __dirname + '/test-scss/import-folder/f1.scss' + '";\n';
-        equalString += '@import "' + __dirname + '/test-scss/import-folder/f2.scss' + '";\n';
+        equalString += '@import "' + __dirname + '/test-scss/import-folder/f2.scss' + '";\n\n';
         equalString += '@import "' + __dirname + '/test-scss/recursive-folder/nested-folder/f3.scss' + '";\n';
 
         
