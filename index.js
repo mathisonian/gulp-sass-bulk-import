@@ -35,15 +35,16 @@ module.exports = function() {
 
         var reg = /@import\s+[\"']([^\"']*\*[^\"']*)[\"'];?/;
 
+        var directory = path.dirname(file.path);
+
         var result;
 
         while((result = reg.exec(contents)) !== null) {
 
-            var index = result.index;
             var sub = result[0];
             var globName = result[1];
 
-            var files = glob.sync(file.base + globName);
+            var files = glob.sync(path.join(directory, globName));
             var replaceString = '';
 
             files.forEach(function(filename){
