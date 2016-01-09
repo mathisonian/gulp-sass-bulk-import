@@ -33,10 +33,12 @@ module.exports = function() {
         // find all instances matching
         var contents = file.contents.toString('utf-8');
 
-        var reg = /@import\s+[\"']([^\"']*\*[^\"']*)[\"'];?/;
+        var reg               = /@import\s+[\"']([^\"']*\*[^\"']*)[\"'];?/;             // See: https://regex101.com/r/vL2pW5/1
+        var regExcludeFiles   = /^(?!\/\/)\s*?@import\s+[\"']([^\"'*]*)[\"']\s*;?/gm;   // See: https://regex101.com/r/aU3cA9/2
+        var excludedFiles      = regExcludeFiles.exec(contents) || [];
+      
 
         var directory = path.dirname(file.path);
-
         var result;
 
         while((result = reg.exec(contents)) !== null) {
@@ -48,11 +50,17 @@ module.exports = function() {
             var replaceString = '';
 
             files.forEach(function(filename){
-                replaceString += process(filename);
+                var shouldReplace = !excludedFiles.some(function(excludedFile){
+                  return ~filename.indexOf(excludedFile);
+                });
+
+                if(shouldReplace){
+                  replaceString += process(filename);
+                }
+                
             });
 
             contents = contents.replace(sub, replaceString);
-
         }
 
         file.contents = new Buffer(contents);
