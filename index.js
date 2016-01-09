@@ -51,7 +51,8 @@ module.exports = function() {
 
             files.forEach(function(filename){
                 var shouldReplace = !excludedFiles.some(function(excludedFile){
-                  return ~filename.indexOf(excludedFile);
+                  var pathEndsWith = new RegExp(excludedFile + '$');
+                  return ~filename.replace(/\.(scss|sass)$/, '').search(pathEndsWith);
                 });
 
                 if(shouldReplace){
