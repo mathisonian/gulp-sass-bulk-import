@@ -29,3 +29,7 @@ node_modules
 
 # Mac binary
 .DS_Store
+
+# Sublime
+*.sublime-project
+*.sublime-workspace

@@ -56,12 +56,28 @@ describe('gulp-sass-glob-import', function() {
     });
 
     it('should not include a stylesheet more than once', function(done){
-
-      var equalString = '@import "duplicate-folder/f1"' + ';\n';
-      equalString += '@import "' + __dirname + '/test-scss/duplicate-folder/f2.scss' + '";\n';
+      var equalString = '@import "duplicate-folder/f1";\n';
+      equalString +=    '@import "' + __dirname + '/test-scss/duplicate-folder/f2.scss";\n';
+      equalString +=    '@import "' + __dirname + '/test-scss/duplicate-folder/f3.scss";\n';
 
       vinyl
           .src(__dirname + '/test-scss/duplicates.scss')
+          .pipe(bulkSass())
+          .on('data', function(file){
+            expect(file.contents.toString('utf-8').trim()).to.equal(equalString.trim());
+          })
+          .on('end', function(){
+            done();
+          });
+    });
+
+    it('alternate: should not include a stylesheet more than once', function(done){
+      var equalString = '@import "duplicate-folder/f1"' + ';\n';
+      equalString +=    '@import "duplicate-folder/f2"' + ';\n';
+      equalString +=    '@import "' + __dirname + '/test-scss/duplicate-folder/f3.scss' + '";\n';
+
+      vinyl
+          .src(__dirname + '/test-scss/duplicates2.scss')
           .pipe(bulkSass())
           .on('data', function(file){
             expect(file.contents.toString('utf-8').trim()).to.equal(equalString.trim());
