@@ -1,6 +1,6 @@
 {
   "name": "gulp-sass-bulk-import",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "import directories in your SCSS",
   "main": "index.js",
   "scripts": {
