@@ -26,3 +26,10 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# Mac binary
+.DS_Store
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
