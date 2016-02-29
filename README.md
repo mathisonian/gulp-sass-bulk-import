@@ -3,6 +3,7 @@ gulp-sass-bulk-import
 
 gulp task to allow importing directories in your SCSS
 
+[![Build Status](https://travis-ci.org/mathisonian/gulp-sass-bulk-import.svg?branch=master)](https://travis-ci.org/mathisonian/gulp-sass-bulk-import)
 
 ## installation
 
@@ -43,4 +44,3 @@ gulp.task('css', function() {
             .pipe( gulp.dest('./public/css/') );
 });
 ```
-
