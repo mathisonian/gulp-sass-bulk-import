@@ -16,7 +16,7 @@ module.exports = function() {
             if (path.basename(filename).substring(0, 1) == '_') return '';
             
             fs.readdirSync(filename).forEach(function (file) {
-                replaceString += process(filename + path.sep + file);
+                replaceString += process(filename + '/' + file);
             });
             return replaceString;
         } else {
